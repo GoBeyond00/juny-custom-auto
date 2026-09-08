@@ -6,24 +6,25 @@
     <title>Juny Custom Auto – Audio, LEDs, Headlights, Underglow</title>
     <style>
         :root {
-            --primary:#111827;
-            --accent:#f97316;
-            --bg:#020617;
-            --text:#e5e7eb;
-            --muted:#9ca3af;
+            --primary:#000000;
+            --accent:#dc2626;
+            --bg:#ffffff;
+            --text:#000000;
+            --muted:#4b5563;
+            --border:#e5e7eb;
         }
         * { box-sizing:border-box; margin:0; padding:0; }
         body {
             font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background:radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+            background:#ffffff;
             color:var(--text);
         }
         a { color:var(--accent); text-decoration:none; }
         header {
             position:sticky; top:0; z-index:50;
-            background:rgba(2,6,23,0.95);
+            background:#ffffff;
             backdrop-filter:blur(10px);
-            border-bottom:1px solid #1f2937;
+            border-bottom:2px solid #000000;
         }
         .nav {
             max-width:1100px; margin:auto;
@@ -36,7 +37,7 @@
         }
         .logo span { color:var(--accent); }
         .nav-links { display:flex; gap:20px; font-size:0.95rem; }
-        .nav-links a { color:var(--muted); }
+        .nav-links a { color:var(--text); }
         .nav-links a:hover { color:var(--accent); }
 
         .hero {
@@ -51,25 +52,26 @@
         .hero-text p { color:var(--muted); margin-bottom:20px; max-width:520px; }
         .hero-badges { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
         .badge {
-            border:1px solid #374151; border-radius:999px;
-            padding:6px 12px; font-size:0.8rem; color:var(--muted);
+            border:2px solid #000000; border-radius:999px;
+            padding:6px 12px; font-size:0.8rem; color:var(--text);
+            background:#ffffff;
         }
         .cta-row { display:flex; gap:14px; align-items:center; margin-bottom:10px; }
         .btn-primary, .btn-outline {
             padding:10px 18px; border-radius:999px; font-size:0.9rem; font-weight:600;
-            border:1px solid transparent; cursor:pointer;
+            border:2px solid transparent; cursor:pointer;
         }
         .btn-primary {
-            background:var(--accent); color:#111827; border-color:var(--accent);
+            background:var(--accent); color:#ffffff; border-color:var(--accent);
         }
         .btn-outline {
-            background:transparent; color:var(--text); border-color:#4b5563;
+            background:transparent; color:var(--text); border-color:#000000;
         }
         .hero-note { font-size:0.8rem; color:var(--muted); }
 
         .hero-card {
-            border-radius:18px; border:1px solid #1f2937;
-            background:linear-gradient(145deg,#020617,#111827);
+            border-radius:18px; border:2px solid #000000;
+            background:#ffffff;
             padding:18px;
         }
         .hero-card h3 { font-size:1rem; margin-bottom:8px; }
@@ -78,14 +80,15 @@
             display:grid; grid-template-columns:repeat(2,1fr); gap:10px; font-size:0.8rem;
         }
         .hero-grid-item {
-            border-radius:12px; border:1px solid #1f2937;
-            padding:10px; background:#020617;
+            border-radius:12px; border:2px solid #000000;
+            padding:10px; background:#f5f5f5;
         }
         .hero-grid-item span { display:block; font-size:0.75rem; color:var(--muted); }
 
         section { max-width:1100px; margin:0 auto 60px; padding:0 20px; }
         section h2 {
             font-size:1.6rem; margin-bottom:10px;
+            color:var(--text);
         }
         section > p {
             color:var(--muted); font-size:0.9rem; margin-bottom:24px;
@@ -97,15 +100,16 @@
             gap:18px;
         }
         .service-card {
-            border-radius:14px; border:1px solid #1f2937;
-            background:#020617; padding:16px;
+            border-radius:14px; border:2px solid #000000;
+            background:#ffffff; padding:16px;
         }
         .service-card h3 { font-size:1rem; margin-bottom:6px; }
         .service-card p { font-size:0.85rem; color:var(--muted); margin-bottom:10px; }
         .service-tags { display:flex; flex-wrap:wrap; gap:6px; font-size:0.75rem; }
         .service-tag {
             padding:4px 8px; border-radius:999px;
-            border:1px solid #374151; color:var(--muted);
+            border:1px solid #000000; color:var(--text);
+            background:#f5f5f5;
         }
 
         .gallery-grid {
@@ -113,12 +117,12 @@
             gap:18px;
         }
         .gallery-item {
-            border-radius:14px; border:1px solid #1f2937;
-            background:#020617; padding:12px;
+            border-radius:14px; border:2px solid #000000;
+            background:#ffffff; padding:12px;
         }
         .gallery-thumb {
             height:150px; border-radius:10px;
-            background:radial-gradient(circle at center,#f97316 0,#111827 40%,#020617 100%);
+            background:linear-gradient(135deg, #dc2626 0%, #000000 100%);
             margin-bottom:10px;
         }
         .gallery-item h3 { font-size:0.95rem; margin-bottom:4px; }
@@ -129,11 +133,12 @@
             gap:16px;
         }
         .step {
-            border-radius:14px; border:1px solid #1f2937;
-            background:#020617; padding:14px;
+            border-radius:14px; border:2px solid #000000;
+            background:#ffffff; padding:14px;
         }
         .step-label {
-            font-size:0.75rem; color:var(--muted); margin-bottom:4px;
+            font-size:0.75rem; color:var(--accent); margin-bottom:4px;
+            font-weight:700;
         }
         .step h3 { font-size:0.95rem; margin-bottom:6px; }
         .step p { font-size:0.8rem; color:var(--muted); }
@@ -143,8 +148,8 @@
             gap:16px;
         }
         .testimonial {
-            border-radius:14px; border:1px solid #1f2937;
-            background:#020617; padding:14px; font-size:0.85rem;
+            border-radius:14px; border:2px solid #000000;
+            background:#ffffff; padding:14px; font-size:0.85rem;
         }
         .testimonial p { color:var(--muted); margin-bottom:8px; }
         .testimonial span { font-size:0.8rem; color:#6b7280; }
@@ -153,33 +158,36 @@
             display:grid; grid-template-columns:1.1fr 1fr; gap:24px;
         }
         .contact-card {
-            border-radius:14px; border:1px solid #1f2937;
-            background:#020617; padding:16px;
+            border-radius:14px; border:2px solid #000000;
+            background:#ffffff; padding:16px;
         }
         .contact-card h3 { font-size:1rem; margin-bottom:8px; }
         .contact-card p { font-size:0.85rem; color:var(--muted); margin-bottom:8px; }
-        .contact-list { list-style:none; font-size:0.85rem; color:var(--muted); }
+        .contact-list { list-style:none; font-size:0.85rem; color:var(--text); }
         .contact-list li { margin-bottom:6px; }
 
         form { display:grid; gap:10px; font-size:0.85rem; }
-        label { color:var(--muted); }
+        label { color:var(--text); font-weight:600; }
         input, textarea {
-            background:#020617; border:1px solid #374151;
+            background:#ffffff; border:2px solid #000000;
             border-radius:8px; padding:8px; color:var(--text);
             font-size:0.85rem;
         }
         textarea { min-height:90px; resize:vertical; }
         form button {
             margin-top:4px; padding:9px 14px;
-            border-radius:999px; border:1px solid var(--accent);
-            background:var(--accent); color:#111827; font-weight:600;
+            border-radius:999px; border:2px solid var(--accent);
+            background:var(--accent); color:#ffffff; font-weight:600;
             cursor:pointer;
+        }
+        form button:hover {
+            background:#b91c1c;
         }
 
         footer {
-            border-top:1px solid #1f2937;
-            padding:16px 20px; font-size:0.8rem; color:var(--muted);
-            text-align:center; background:#020617;
+            border-top:2px solid #000000;
+            padding:16px 20px; font-size:0.8rem; color:var(--text);
+            text-align:center; background:#ffffff;
         }
 
         @media (max-width:800px) {
