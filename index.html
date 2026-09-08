@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juny Custom Auto – Audio, LEDs, Headlights, Underglow</title>
+    <style>
+        :root {
+            --primary:#111827;
+            --accent:#f97316;
+            --bg:#020617;
+            --text:#e5e7eb;
+            --muted:#9ca3af;
+        }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body {
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+            color:var(--text);
+        }
+        a { color:var(--accent); text-decoration:none; }
+        header {
+            position:sticky; top:0; z-index:50;
+            background:rgba(2,6,23,0.95);
+            backdrop-filter:blur(10px);
+            border-bottom:1px solid #1f2937;
+        }
+        .nav {
+            max-width:1100px; margin:auto;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:12px 20px;
+        }
+        .logo {
+            font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+            color:var(--text);
+        }
+        .logo span { color:var(--accent); }
+        .nav-links { display:flex; gap:20px; font-size:0.95rem; }
+        .nav-links a { color:var(--muted); }
+        .nav-links a:hover { color:var(--accent); }
+
+        .hero {
+            max-width:1100px; margin:40px auto 60px;
+            display:grid; grid-template-columns:1.3fr 1fr; gap:40px;
+            padding:0 20px;
+        }
+        .hero-text h1 {
+            font-size:2.6rem; line-height:1.1; margin-bottom:16px;
+        }
+        .hero-text h1 span { color:var(--accent); }
+        .hero-text p { color:var(--muted); margin-bottom:20px; max-width:520px; }
+        .hero-badges { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
+        .badge {
+            border:1px solid #374151; border-radius:999px;
+            padding:6px 12px; font-size:0.8rem; color:var(--muted);
+        }
+        .cta-row { display:flex; gap:14px; align-items:center; margin-bottom:10px; }
+        .btn-primary, .btn-outline {
+            padding:10px 18px; border-radius:999px; font-size:0.9rem; font-weight:600;
+            border:1px solid transparent; cursor:pointer;
+        }
+        .btn-primary {
+            background:var(--accent); color:#111827; border-color:var(--accent);
+        }
+        .btn-outline {
+            background:transparent; color:var(--text); border-color:#4b5563;
+        }
+        .hero-note { font-size:0.8rem; color:var(--muted); }
+
+        .hero-card {
+            border-radius:18px; border:1px solid #1f2937;
+            background:linear-gradient(145deg,#020617,#111827);
+            padding:18px;
+        }
+        .hero-card h3 { font-size:1rem; margin-bottom:8px; }
+        .hero-card p { font-size:0.85rem; color:var(--muted); margin-bottom:12px; }
+        .hero-grid {
+            display:grid; grid-template-columns:repeat(2,1fr); gap:10px; font-size:0.8rem;
+        }
+        .hero-grid-item {
+            border-radius:12px; border:1px solid #1f2937;
+            padding:10px; background:#020617;
+        }
+        .hero-grid-item span { display:block; font-size:0.75rem; color:var(--muted); }
+
+        section { max-width:1100px; margin:0 auto 60px; padding:0 20px; }
+        section h2 {
+            font-size:1.6rem; margin-bottom:10px;
+        }
+        section > p {
+            color:var(--muted); font-size:0.9rem; margin-bottom:24px;
+            max-width:620px;
+        }
+
+        .services-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+            gap:18px;
+        }
+        .service-card {
+            border-radius:14px; border:1px solid #1f2937;
+            background:#020617; padding:16px;
+        }
+        .service-card h3 { font-size:1rem; margin-bottom:6px; }
+        .service-card p { font-size:0.85rem; color:var(--muted); margin-bottom:10px; }
+        .service-tags { display:flex; flex-wrap:wrap; gap:6px; font-size:0.75rem; }
+        .service-tag {
+            padding:4px 8px; border-radius:999px;
+            border:1px solid #374151; color:var(--muted);
+        }
+
+        .gallery-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+            gap:18px;
+        }
+        .gallery-item {
+            border-radius:14px; border:1px solid #1f2937;
+            background:#020617; padding:12px;
+        }
+        .gallery-thumb {
+            height:150px; border-radius:10px;
+            background:radial-gradient(circle at center,#f97316 0,#111827 40%,#020617 100%);
+            margin-bottom:10px;
+        }
+        .gallery-item h3 { font-size:0.95rem; margin-bottom:4px; }
+        .gallery-item p { font-size:0.8rem; color:var(--muted); }
+
+        .process-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:16px;
+        }
+        .step {
+            border-radius:14px; border:1px solid #1f2937;
+            background:#020617; padding:14px;
+        }
+        .step-label {
+            font-size:0.75rem; color:var(--muted); margin-bottom:4px;
+        }
+        .step h3 { font-size:0.95rem; margin-bottom:6px; }
+        .step p { font-size:0.8rem; color:var(--muted); }
+
+        .testimonials {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:16px;
+        }
+        .testimonial {
+            border-radius:14px; border:1px solid #1f2937;
+            background:#020617; padding:14px; font-size:0.85rem;
+        }
+        .testimonial p { color:var(--muted); margin-bottom:8px; }
+        .testimonial span { font-size:0.8rem; color:#6b7280; }
+
+        .contact-grid {
+            display:grid; grid-template-columns:1.1fr 1fr; gap:24px;
+        }
+        .contact-card {
+            border-radius:14px; border:1px solid #1f2937;
+            background:#020617; padding:16px;
+        }
+        .contact-card h3 { font-size:1rem; margin-bottom:8px; }
+        .contact-card p { font-size:0.85rem; color:var(--muted); margin-bottom:8px; }
+        .contact-list { list-style:none; font-size:0.85rem; color:var(--muted); }
+        .contact-list li { margin-bottom:6px; }
+
+        form { display:grid; gap:10px; font-size:0.85rem; }
+        label { color:var(--muted); }
+        input, textarea {
+            background:#020617; border:1px solid #374151;
+            border-radius:8px; padding:8px; color:var(--text);
+            font-size:0.85rem;
+        }
+        textarea { min-height:90px; resize:vertical; }
+        form button {
+            margin-top:4px; padding:9px 14px;
+            border-radius:999px; border:1px solid var(--accent);
+            background:var(--accent); color:#111827; font-weight:600;
+            cursor:pointer;
+        }
+
+        footer {
+            border-top:1px solid #1f2937;
+            padding:16px 20px; font-size:0.8rem; color:var(--muted);
+            text-align:center; background:#020617;
+        }
+
+        @media (max-width:800px) {
+            .hero { grid-template-columns:1fr; }
+            .contact-grid { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">JUNY<span>CUSTOM</span> AUTO</div>
+        <nav class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>Clean installs. <span>Bright lights.</span> Loud systems.</h1>
+        <p>
+            Custom automotive audio, LED lighting, headlight upgrades, and underglow setups—
+            built with attention to detail and a focus on clean, reliable work.
+        </p>
+        <div class="hero-badges">
+            <div class="badge">Custom Audio</div>
+            <div class="badge">LED & Underglow</div>
+            <div class="badge">Headlight Retrofits</div>
+            <div class="badge">Lovejoy, GA</div>
+        </div>
+        <div class="cta-row">
+            <a href="#contact" class="btn-primary">Book a build</a>
+            <a href="#gallery" class="btn-outline">View recent cars</a>
+        </div>
+        <div class="hero-note">
+            DM or submit the form with your car, budget, and ideas—get a custom quote.
+        </div>
+    </div>
+
+    <div class="hero-card">
+        <h3>Featured setup</h3>
+        <p>Full audio upgrade, RGB interior LEDs, and underglow on a daily driver—wired clean, no rattles.</p>
+        <div class="hero-grid">
+            <div class="hero-grid-item">
+                Loud, clean audio
+                <span>Sub + amp + door speakers tuned for daily use.</span>
+            </div>
+            <div class="hero-grid-item">
+                RGB interior
+                <span>Remote/app control with smooth color fades.</span>
+            </div>
+            <div class="hero-grid-item">
+                Headlight upgrade
+                <span>LED projectors for better night visibility.</span>
+            </div>
+            <div class="hero-grid-item">
+                Underglow kit
+                <span>Full underbody glow with multiple color modes.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <h2>Services</h2>
+    <p>
+        Every car is different. I focus on clean installs, solid wiring, and setups that match how you actually drive.
+    </p>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>Custom Audio Systems</h3>
+            <p>
+                Subwoofers, amps, door speakers, and full system tuning—built for daily driving or show setups.
+            </p>
+            <div class="service-tags">
+                <span class="service-tag">Sub/amp installs</span>
+                <span class="service-tag">Door speaker upgrades</span>
+                <span class="service-tag">OEM integration</span>
+            </div>
+        </div>
+        <div class="service-card">
+            <h3>LED Interior & Exterior</h3>
+            <p>
+                Clean LED installs for interior glow, accent lighting, and exterior details with remote or app control.
+            </p>
+            <div class="service-tags">
+                <span class="service-tag">Interior strips</span>
+                <span class="service-tag">Accent lighting</span>
+                <span class="service-tag">RGB setups</span>
+            </div>
+        </div>
+        <div class="service-card">
+            <h3>Headlight Upgrades</h3>
+            <p>
+                Better visibility and modern style with LED/HID conversions, projector retrofits, and custom accents.
+            </p>
+            <div class="service-tags">
+                <span class="service-tag">LED/HID</span>
+                <span class="service-tag">Projector retrofits</span>
+                <span class="service-tag">Smoked/colored details</span>
+            </div>
+        </div>
+        <div class="service-card">
+            <h3>Underglow & Wheel Lighting</h3>
+            <p>
+                Full underbody glow and wheel well lighting to make your car stand out at night.
+            </p>
+            <div class="service-tags">
+                <span class="service-tag">RGB underglow</span>
+                <span class="service-tag">Wheel wells</span>
+                <span class="service-tag">Remote/app control</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery">
+    <h2>Recent Cars</h2>
+    <p>
+        A few examples of the type of work I do. Use this as inspiration for your own build.
+    </p>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <div class="gallery-thumb"></div>
+            <h3>Daily driver audio + underglow</h3>
+            <p>
+                Clean trunk build with sub and amp, door speakers, and RGB underglow for weekend meets.
+            </p>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-thumb"></div>
+            <h3>LED interior glow</h3>
+            <p>
+                Full cabin lighting with hidden strips, soft glow, and color‑changing modes controlled from your phone.
+            </p>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-thumb"></div>
+            <h3>Headlight retrofit</h3>
+            <p>
+                Projector headlights with sharp cutoff, bright output, and custom accent LEDs for a modern look.
+            </p>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-thumb"></div>
+            <h3>Show car package</h3>
+            <p>
+                Audio, interior LEDs, underglow, and wheel lighting all synced for meets and shows.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="process">
+    <h2>How it works</h2>
+    <p>
+        Simple, straight‑forward process so you know what's happening with your car at every step.
+    </p>
+    <div class="process-grid">
+        <div class="step">
+            <div class="step-label">Step 1</div>
+            <h3>Tell me your idea</h3>
+            <p>
+                Send your car, budget, and what you want—audio, lights, or a full package.
+            </p>
+        </div>
+        <div class="step">
+            <div class="step-label">Step 2</div>
+            <h3>Plan the setup</h3>
+            <p>
+                I recommend gear and layout that fits your car and how you use it.
+            </p>
+        </div>
+        <div class="step">
+            <div class="step-label">Step 3</div>
+            <h3>Install day</h3>
+            <p>
+                You drop the car off, I handle the wiring, mounting, and clean finish.
+            </p>
+        </div>
+        <div class="step">
+            <div class="step-label">Step 4</div>
+            <h3>Walkthrough & tuning</h3>
+            <p>
+                We go over everything together—controls, modes, and audio tuning before you drive off.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact & booking</h2>
+    <p>
+        Use the form or message on social with your car, what you want done, and your budget.
+    </p>
+    <div class="contact-grid">
+        <div class="contact-card">
+            <h3>Details</h3>
+            <p>Based in Lovejoy, GA. Mobile communication, shop‑style installs.</p>
+            <ul class="contact-list">
+                <li><strong>Instagram:</strong> @junycustom</li>
+                <li><strong>Email:</strong> TrueTransportServices@outlook.com</li>
+                <li><strong>Phone:</strong> 470‑699‑4144</li>
+                <li><strong>Hours:</strong> By appointment</li>
+            </ul>
+        </div>
+        <div class="contact-card">
+            <h3>Booking form</h3>
+            <form>
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Your name">
+
+                <label for="car">Car (year, make, model)</label>
+                <input id="car" type="text" placeholder="e.g. 2018 Dodge Charger">
+
+                <label for="services">What do you want done?</label>
+                <textarea id="services" placeholder="Audio, LEDs, headlights, underglow…"></textarea>
+
+                <label for="budget">Budget range</label>
+                <input id="budget" type="text" placeholder="e.g. $1,500 - $3,000">
+
+                <button type="submit">Request quote</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Juny Custom Auto. All rights reserved. | Lovejoy, GA | <a href="mailto:TrueTransportServices@outlook.com">Email us</a></p>
+</footer>
+
+</body>
+</html>
