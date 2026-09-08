@@ -6,25 +6,25 @@
     <title>Juny Custom Auto – Audio, LEDs, Headlights, Underglow</title>
     <style>
         :root {
-            --primary:#000000;
+            --primary:#111111;
             --accent:#dc2626;
-            --bg:#ffffff;
-            --text:#000000;
-            --muted:#4b5563;
-            --border:#e5e7eb;
+            --bg:#000000;
+            --text:#ffffff;
+            --muted:#b8b8b8;
+            --border:#333333;
         }
         * { box-sizing:border-box; margin:0; padding:0; }
         body {
             font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background:#ffffff;
+            background:#000000;
             color:var(--text);
         }
         a { color:var(--accent); text-decoration:none; }
         header {
             position:sticky; top:0; z-index:50;
-            background:#ffffff;
+            background:#111111;
             backdrop-filter:blur(10px);
-            border-bottom:2px solid #000000;
+            border-bottom:2px solid #dc2626;
         }
         .nav {
             max-width:1100px; margin:auto;
@@ -52,9 +52,9 @@
         .hero-text p { color:var(--muted); margin-bottom:20px; max-width:520px; }
         .hero-badges { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
         .badge {
-            border:2px solid #000000; border-radius:999px;
+            border:2px solid var(--accent); border-radius:999px;
             padding:6px 12px; font-size:0.8rem; color:var(--text);
-            background:#ffffff;
+            background:transparent;
         }
         .cta-row { display:flex; gap:14px; align-items:center; margin-bottom:10px; }
         .btn-primary, .btn-outline {
@@ -65,13 +65,13 @@
             background:var(--accent); color:#ffffff; border-color:var(--accent);
         }
         .btn-outline {
-            background:transparent; color:var(--text); border-color:#000000;
+            background:transparent; color:var(--text); border-color:var(--accent);
         }
         .hero-note { font-size:0.8rem; color:var(--muted); }
 
         .hero-card {
-            border-radius:18px; border:2px solid #000000;
-            background:#ffffff;
+            border-radius:18px; border:2px solid var(--accent);
+            background:#111111;
             padding:18px;
         }
         .hero-card h3 { font-size:1rem; margin-bottom:8px; }
@@ -80,8 +80,8 @@
             display:grid; grid-template-columns:repeat(2,1fr); gap:10px; font-size:0.8rem;
         }
         .hero-grid-item {
-            border-radius:12px; border:2px solid #000000;
-            padding:10px; background:#f5f5f5;
+            border-radius:12px; border:2px solid var(--accent);
+            padding:10px; background:#1a1a1a;
         }
         .hero-grid-item span { display:block; font-size:0.75rem; color:var(--muted); }
 
@@ -100,16 +100,16 @@
             gap:18px;
         }
         .service-card {
-            border-radius:14px; border:2px solid #000000;
-            background:#ffffff; padding:16px;
+            border-radius:14px; border:2px solid var(--accent);
+            background:#111111; padding:16px;
         }
         .service-card h3 { font-size:1rem; margin-bottom:6px; }
         .service-card p { font-size:0.85rem; color:var(--muted); margin-bottom:10px; }
         .service-tags { display:flex; flex-wrap:wrap; gap:6px; font-size:0.75rem; }
         .service-tag {
             padding:4px 8px; border-radius:999px;
-            border:1px solid #000000; color:var(--text);
-            background:#f5f5f5;
+            border:1px solid var(--accent); color:var(--text);
+            background:transparent;
         }
 
         .gallery-grid {
@@ -117,12 +117,12 @@
             gap:18px;
         }
         .gallery-item {
-            border-radius:14px; border:2px solid #000000;
-            background:#ffffff; padding:12px;
+            border-radius:14px; border:2px solid var(--accent);
+            background:#111111; padding:12px;
         }
         .gallery-thumb {
             height:150px; border-radius:10px;
-            background:linear-gradient(135deg, #dc2626 0%, #000000 100%);
+            background:linear-gradient(135deg, #dc2626 0%, #330000 100%);
             margin-bottom:10px;
         }
         .gallery-item h3 { font-size:0.95rem; margin-bottom:4px; }
@@ -133,8 +133,8 @@
             gap:16px;
         }
         .step {
-            border-radius:14px; border:2px solid #000000;
-            background:#ffffff; padding:14px;
+            border-radius:14px; border:2px solid var(--accent);
+            background:#111111; padding:14px;
         }
         .step-label {
             font-size:0.75rem; color:var(--accent); margin-bottom:4px;
@@ -148,18 +148,18 @@
             gap:16px;
         }
         .testimonial {
-            border-radius:14px; border:2px solid #000000;
-            background:#ffffff; padding:14px; font-size:0.85rem;
+            border-radius:14px; border:2px solid var(--accent);
+            background:#111111; padding:14px; font-size:0.85rem;
         }
         .testimonial p { color:var(--muted); margin-bottom:8px; }
-        .testimonial span { font-size:0.8rem; color:#6b7280; }
+        .testimonial span { font-size:0.8rem; color:var(--muted); }
 
         .contact-grid {
             display:grid; grid-template-columns:1.1fr 1fr; gap:24px;
         }
         .contact-card {
-            border-radius:14px; border:2px solid #000000;
-            background:#ffffff; padding:16px;
+            border-radius:14px; border:2px solid var(--accent);
+            background:#111111; padding:16px;
         }
         .contact-card h3 { font-size:1rem; margin-bottom:8px; }
         .contact-card p { font-size:0.85rem; color:var(--muted); margin-bottom:8px; }
@@ -169,7 +169,7 @@
         form { display:grid; gap:10px; font-size:0.85rem; }
         label { color:var(--text); font-weight:600; }
         input, textarea {
-            background:#ffffff; border:2px solid #000000;
+            background:#1a1a1a; border:2px solid var(--accent);
             border-radius:8px; padding:8px; color:var(--text);
             font-size:0.85rem;
         }
@@ -185,9 +185,9 @@
         }
 
         footer {
-            border-top:2px solid #000000;
+            border-top:2px solid var(--accent);
             padding:16px 20px; font-size:0.8rem; color:var(--text);
-            text-align:center; background:#ffffff;
+            text-align:center; background:#111111;
         }
 
         @media (max-width:800px) {
