@@ -184,6 +184,19 @@
             background:#b91c1c;
         }
 
+        .form-message {
+            padding:10px; border-radius:8px; margin-top:10px;
+            font-size:0.85rem; display:none;
+        }
+        .form-message.success {
+            background:#1a3a1a; color:#4ade80; display:block;
+            border:1px solid #22c55e;
+        }
+        .form-message.error {
+            background:#3a1a1a; color:#f87171; display:block;
+            border:1px solid #ef4444;
+        }
+
         footer {
             border-top:2px solid var(--accent);
             padding:16px 20px; font-size:0.8rem; color:var(--text);
@@ -401,20 +414,24 @@
         </div>
         <div class="contact-card">
             <h3>Booking form</h3>
-            <form>
+            <form id="quoteForm" action="https://formspree.io/f/xyzgpqwd" method="POST">
                 <label for="name">Name</label>
-                <input id="name" type="text" placeholder="Your name">
+                <input id="name" type="text" name="name" placeholder="Your name" required>
+
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" placeholder="Your email" required>
 
                 <label for="car">Car (year, make, model)</label>
-                <input id="car" type="text" placeholder="e.g. 2018 Dodge Charger">
+                <input id="car" type="text" name="car" placeholder="e.g. 2018 Dodge Charger" required>
 
                 <label for="services">What do you want done?</label>
-                <textarea id="services" placeholder="Audio, LEDs, headlights, underglow…"></textarea>
+                <textarea id="services" name="services" placeholder="Audio, LEDs, headlights, underglow…" required></textarea>
 
                 <label for="budget">Budget range</label>
-                <input id="budget" type="text" placeholder="e.g. $1,500 - $3,000">
+                <input id="budget" type="text" name="budget" placeholder="e.g. $1,500 - $3,000" required>
 
                 <button type="submit">Request quote</button>
+                <div id="formMessage" class="form-message"></div>
             </form>
         </div>
     </div>
@@ -423,6 +440,46 @@
 <footer>
     <p>&copy; 2025 Juny Custom Auto. All rights reserved. | Lovejoy, GA | <a href="mailto:TrueTransportServices@outlook.com">Email us</a></p>
 </footer>
+
+<script>
+    const form = document.getElementById('quoteForm');
+    const formMessage = document.getElementById('formMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Collect form data
+        const formData = new FormData(form);
+
+        try {
+            // Send to Formspree
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Success message
+                formMessage.textContent = '✓ Quote request sent! I\'ll get back to you soon.';
+                formMessage.classList.remove('error');
+                formMessage.classList.add('success');
+                form.reset();
+            } else {
+                // Error message
+                formMessage.textContent = '✗ Something went wrong. Please try again.';
+                formMessage.classList.remove('success');
+                formMessage.classList.add('error');
+            }
+        } catch (error) {
+            formMessage.textContent = '✗ Error sending quote. Please try again.';
+            formMessage.classList.remove('success');
+            formMessage.classList.add('error');
+        }
+    });
+</script>
 
 </body>
 </html>
